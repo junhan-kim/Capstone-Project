@@ -1,0 +1,294 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title> accident detection</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href='{% static "css/bootstrap-min.css" %}' type="text/css">
+
+    <!-- Custom Fonts -->
+    <link
+        href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+        rel='stylesheet' type='text/css'>
+    <link
+        href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+        rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href='{% static "font-awesome/css/font-awesome.min.css" %}' type="text/css">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href='{% static "css/animate.min.css" %}' type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href='{% static "css/creative.css" %}' type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- <img src="/static/img/twitter_header_photo_1.png" float = left> -->
+</head>
+
+<body id="page-top">
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Accident Detection Service</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="{%url 'accounts:login' %}">Login</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'accounts:signup' %}">Signup</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1>더 나은 안전한 세상을 꿈꿉니다</h1>
+                <hr>
+                <p>사고가 발생하면 사고를 감지하고 알림서비스 및 정보를 제공 합니다.</p>
+                <a href="{% url 'accounts:login' %}" class="btn btn-primary btn-xl page-scroll">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading" float="left">여러분에게 필요한 서비스!</h2>
+                    <hr class="light">
+                    <p class="text-faded">사고 상황에 대해 알고 싶습니까? 우리는 여러분이 필요로하는 것을 가졌습니다. 
+                        우리는 여러분에게 CCTV 비디오를 보여줄 것이며 사고를 감지 할 것입니다!
+                         또한 사고에 관한 데이터를 다운로드 할 수 있습니다!</p>
+                    <a href="#page-top" class="btn btn-default btn-xl page-scroll">시작하기!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<div style="padding-top: 2%;">
+    <div class="container-fluid">   
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading" style=" z-index:4; position : relative;  padding-top: 30px; font-size: 2.5em;">우리의 서비스</h2>
+                <hr class="primary" style="position : relative; z-index: 5;">
+            </div>
+        </div>
+    </div>
+    <div style="height: 450px;">
+        <img src="/static/img/b.png"
+            style=" z-index:0; position:relative; transform:translate(0%, -5%); width: 50%; height: 500px; ">
+
+        <img src="/static/img/d.png"
+            style=" z-index:0; position: relative;; transform:translate(100%, -110%); width: 50%; height: 500px; ">
+    </div>
+</div>
+
+
+    <!-- 
+    <section id="services">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">At Our Service</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-check-square wow bounceIn text-primary"></i>
+                        <h3>Object Detection</h3>
+                        <p class="text-muted">object detection</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-male wow bounceIn text-primary" data-wow-delay=".1s"></i>
+                        <h3>Pose Estimation</h3>
+                        <p class="text-muted">pose estimation</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-exclamation-triangle wow bounceIn text-primary" data-wow-delay=".2s"></i>
+                        <h3>Accident detection</h3>
+                        <p class="text-muted">accident detection</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-download wow bounceIn text-primary" data-wow-delay=".3s"></i>
+                        <h3>Download</h3>
+                        <p class="text-muted">download</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+        <section class="no-padding" id="portfolio" >
+        <div style="transform: translate(0%,30%) ;">
+            <div class="row no-gutter"  >
+                <div class="col-lg-4 col-sm-6" >
+                    <a href="#" class="portfolio-box">
+                        <img src='{% static "img/portfolio/4.jpg" %}' class="img-responsive" style="height: 300px;" alt="" >
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Car Crash
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#" class="portfolio-box">
+                        <img src='{% static "img/portfolio/5.jpg" %}' class="img-responsive" style="height: 300px;" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Car Fire
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#" class="portfolio-box">
+                        <img src='{% static "img/portfolio/6.jpg" %}' class="img-responsive" style="height: 300px;" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Object detection
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="contact">
+        <div class="container">
+            <div class="row" style="transform: translate(0%,30%);">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">필요한 사항은 연락주세요!</h2>
+                    <hr class="primary">
+                    <p>우리와 함께 시작할 준비가 되셨습니까? 전화나 이메일을 보내 주시면 피드백을 드리겠습니다!</p>
+                </div>
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <i class="fa fa-phone fa-3x wow bounceIn"></i>
+                    <p>010-2350-7965</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
+                    <p><a href="mailto:wjdgur778@gmail.com">wjdgur778@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="fixed-bottom footer-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <br>
+                    <p>Copyright &copy; 2020. All Right Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <style type="text/css">
+        .title {
+            color: #c80;
+            font-weight: bold;
+        }
+
+        .powered {
+            position: relative;
+            top: 77%;
+            color: #cc0;
+            font-style: italic;
+        }
+
+        .footer-wrapper {
+            background: rgb(255, 124, 37);
+            color: #eee;
+            line-height: 20px;
+        }
+
+        .footer-wrapper a {
+            color: #ff9;
+            /* footer-right text */
+        }
+
+        .footer-wrapper a:hover {
+            color: #0ff;
+        }
+
+        .footer ul li {
+            text-align: center;
+        }
+    </style>
+    <!-- jQuery -->
+    <script src='{% static "js/jquery.js" %}'></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src='{% static "js/bootstrap.min.js" %}'></script>
+
+    <!-- Plugin JavaScript -->
+    <script src='{% static "js/jquery.easing.min.js" %}'></script>
+    <script src='{% static "js/jquery.fittext.js" %}'></script>
+    <script src='{% static "js/wow.min.js" %}'></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src='{% static "js/creative.js" %}'></script>
+
+</body>
+
+</html>

@@ -1,0 +1,336 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>accident detection</title>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href='{% static "css/bootstrap-min.css" %}' type="text/css">
+
+    <!-- Custom Fonts -->
+    <link
+        href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+        rel='stylesheet' type='text/css'>
+    <link
+        href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+        rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href='{% static "font-awesome/css/font-awesome.min.css" %}' type="text/css">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href='{% static "css/animate.min.css" %}' type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href='{% static "css/creative.css" %}' type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+
+<nav class="navbar navbar-default navbar-fixed-top affix">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{%url 'firstpage'%}">Accidents Detection Service</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="{%url 'cctv:home'%}">Car Crash</a></li>
+            <li class = "active"><a href="{%url 'cctv:fire'%}">Car Fire</a></li>
+        </ul>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{%url 'firstpage'%}">Logout</a>
+                </li>
+                <li>
+                    <a href="{%url 'accounts:signup'%}">Signup</a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+</style>
+
+<style type="text/css">
+    .title {
+        color: #c80;
+        font-weight: bold;
+    }
+
+    .powered {
+        position: relative;
+        top: 77%;
+        color: #cc0;
+        font-style: italic;
+    }
+
+    .footer-wrapper {
+        background: rgb(255, 124, 37);
+        color: #eee;
+        line-height: 15px;
+    }
+
+    .footer-wrapper a {
+        color: #ff9;
+        /* footer-right text */
+    }
+
+    .footer-wrapper a:hover {
+        color: #0ff;
+    }
+
+    footer ul li {
+        text-align: center;
+    }
+
+    .container2 {
+        padding: 7px;
+        margin-top: 90px;
+        width: 50%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+</style>
+
+
+<body>
+    <script type="text/javascript" language = "javascript">
+        var _count = 0;
+        var sweet_flag = false;
+        var s_count = 1;
+        var flag = 1;
+        var whole_f = false;
+        var id;
+        var cnt;
+        var fg = true;
+
+        function wait(msecs) {
+            var start = new Date().getTime();
+            var cur = start;
+            while (cur - start < msecs) {
+                cur = new Date().getTime();
+            }
+        }
+        function sweet(_count) {
+        Swal.fire({
+            title: "Warning!",
+            width: 400,
+            backdrop: 'rgba(255, 115, 0,0.2)',
+            padding: '3em',
+            text: "You clicked the button!",
+            icon: "warning",
+            html: '사고 발생',
+            timer : 2000,
+            showConfirmButton: false,
+        });
+        setTimeout(delay, 2300);
+    }
+
+    function delay() {
+        Swal.fire({
+            title: "Download",
+            width: 400,
+            timer: 10000,
+            backdrop: 'rgba(255, 115, 0,0.2)',
+            padding: '3em',
+            text: "4초 후 창이 닫힙니다!",
+            icon: "success",
+            html:
+                '사고에 대한 정보를 다운로드하세요! ' +'여기 '+
+                '<a href ="/static/img/accident_video_f.avi" download>영상</a>' +
+                '이 있습니다.' ,
+        });
+    }
+
+       
+        /*    
+        function readTextFile(file) { 
+            var rawFile = new XMLHttpRequest(); 
+            rawFile.open("GET", file, false); 
+            rawFile.onreadystatechange = function () { 
+                if(rawFile.readyState === 4) { 
+                    if(rawFile.status === 200 || rawFile.status == 0) { 
+                        var allText = rawFile.responseText; 
+                        alert(allText); 
+                    } 
+                }
+             } 
+             rawFile.send(null); 
+        }
+        */
+        
+
+        function init() {
+            //var tmp = readTextFile("file:///C:/Users/junhan_window/share/_web/static/input_images/acc_loc.txt");
+            //console.log(tmp);
+            console.log(_count);
+            console.log("flag : " +flag)
+
+            window.onload = a()
+            console.log("flag : " +flag)
+
+            flag = true;
+
+            if(whole_f){
+                if($('#img').attr("src", "/static/input_images/image_f" + _count + ".jpg").load = true){
+                }
+                console.log("flag : " + flag);
+                flag = false;
+                whole_f = false;
+            }
+
+            _count = _count +1;
+
+            id = setTimeout(init, 80);
+        }
+        function myfunction() {
+
+            // if (_count != 1) {
+            //     console.log(_count + "myfunction()");
+            //     flag = 0;
+            //     wait(10000);
+            // }
+        }
+
+        function recog(){
+            console.log("recog()");
+            sweet();
+            flag =false;
+        }
+
+      
+    </script>
+
+    </head>
+
+    <style>
+        ul li {
+            list-style-type: none;
+        }
+    </style>
+
+    <body onLoad="init();">
+        <script type="text/javascript">
+            function a(){
+                console.log("로드가 되었네요");
+                $('#check').attr("src", "/static/input_images/image_f" + _count + "_.jpg");
+                whole_f = true;
+            }
+        </script>
+        <div class="container2" style="width:920px; border:1px solid black;">
+            <img id="img" src="" style="width: 100%; height: 100%; float: right;" class="relative"
+                >
+            <img id = "check" onload = "recog()" onerror="this.style.display = 'none';" >
+
+            <div style="width:100% ; overflow-y: auto; height: 0px;">
+                <div style="width:100%; padding-left: 20px; position: absolute; ">
+                </div>
+                <ul style="top: -4  0px;">
+                </ul>
+            </div>
+        </div>
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9">
+        import Swal from 'sweetalert2'
+    </script>
+
+</html>
+</body>
+
+
+<section id="services">
+    <div class="container-fluid">
+        <div class="row" style="transform: translate(0%,-55%);">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">At Our Service</h2>
+                <hr class="primary">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row" style="transform: translate(0%,-20%);">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-check-square wow bounceIn text-primary"></i>
+                    <h3>Object Detection</h3>
+                    <p class="text-muted">object detection</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-male wow bounceIn text-primary" data-wow-delay=".1s"></i>
+                    <h3>Pose Estimation</h3>
+                    <p class="text-muted">pose estimation</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-exclamation-triangle wow bounceIn text-primary" data-wow-delay=".2s"></i>
+                    <h3>Accident detection</h3>
+                    <p class="text-muted">car fire</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-download wow bounceIn text-primary" data-wow-delay=".3s"></i>
+                    <h3>Download</h3>
+                    <p class="text-muted">download</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="fixed-bottom footer-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <br>
+                <p>Copyright &copy; 2020. All Right Reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src='{% static "js/jquery.js" %}'></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src='{% static "js/bootstrap.min.js" %}'></script>
+
+<!-- Plugin JavaScript -->
+<script src='{% static "js/jquery.easing.min.js" %}'></script>
+<script src='{% static "js/jquery.fittext.js" %}'></script>
+<script src='{% static "js/wow.min.js" %}'></script>
+
+<!-- Custom Theme JavaScript -->
+<script src='{% static "js/creative.js" %}'></script>

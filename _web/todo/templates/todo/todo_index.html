@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block title %}todo_index.html{% endblock %}
+
+{% block extra-style %}
+<style>
+    body {
+        text-align: center;
+        background-color: #ddd;
+    }
+    .inputBox {
+        margin: auto;
+        width: 70%;
+        background: white;
+        height: 50px;
+        border-radius: 50px;
+        line-height: 50px;
+    }
+    .inputBox .name {
+        border-style: none;
+        border-bottom: 1px solid #ddd;
+        width: 90px;
+        padding-left: 20px;
+        line-height: 20px;
+    }
+    .inputBox .item{
+        border-style: none;
+        border-bottom: 1px solid #ddd;
+        width: 400px;
+        margin-left: 50px;
+        padding-left: 20px;
+        line-height: 20px;
+    }
+    .todoList {
+        list-style: none;
+        padding: 10px 0;
+        text-align: left;
+    }
+    .todoList li {
+        display: flex;
+        height: 50px;
+        line-height: 50px;
+        margin: 0.5rem 0;
+        padding: 0 0.9rem;
+        background: white;
+        border-radius: 5px;
+    }
+    .removeBtn {
+        margin-left: auto;
+        font-size: 20px;
+    }
+    .removeBtn:hover{
+        color:red;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id='app'>
+
+    <h1>My Todo App !</h1>
+    <strong>서로 할 일이나 의견을 공유해 봅시다.</strong>
+    <br>
+
+    <div class="inputBox">
+        <input class="name" type="text" placeholder="name ..." v-model="name">
+        <input class="item" type="text" placeholder="type anything welcomed ..."
+            v-model="todo" v-on:keyup.enter="add_todo()">
+        <button v-on:click="add_todo()" class="btn btn-primary btn-sm">ADD</button>
+    </div>
+
+
+    <ul class="todoList">
+        <li v-for="(todo, index) in todoList">
+            <span>[[todo.name]]::[[todo.todo]]</span>
+            <span class="removeBtn" v-on:click="remove_todo(todo,index)">x</span>
+        </li>
+    </ul>
+
+</div>
+{% endblock %}
+
+{% block extra-script %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app',
+        data: {
+            name: '',
+            todo: '',
+            todoList: [],
+        },
+
+        created: function(){
+            console.log("created()...");
+            this.fetch_all_todo();
+        },
+
+        methods: {
+            fetch_all_todo: function(){
+                var vm = this
+
+                axios.get('/api/todo/list/')
+                .then(function(res){
+                    console.log("Get res",res);
+                    vm.todoList = res.data;
+                })
+                .catch(function(err){
+                    console.log("Get err",err);
+                })
+
+            },
+
+            add_todo: function() {
+                console.log("add_todo()...");
+                if(this.todo =='') return;
+                if(this.name =='') this.name = '홍길동';
+
+                var PostData={name : this.name, todo : this.todo}
+                var vm =this
+                axios.post('/api/todo/create/',PostData)
+                .then(function(res){
+                    console.log("POST RES...",res);
+                    vm.todoList.push({id: res.data.id ,name: res.data.name, todo: res.data.todo});
+
+                })
+                .catch(function(err){
+                    console.log("POST RES...",err);
+                })
+                this.name ='';
+                this.todo = '';
+            },
+
+            remove_todo: function(todo, index) {
+                console.log("remove_todo()...",index);
+                if(confirm("are tou serious?")==false) return ;
+                var vm = this;
+                axios.delete('/api/todo/'+todo.id+'/delete/')
+                .then(function(res){
+                    console.log('Delete RES',res);
+                    vm.todoList.splice(index,1);
+                })
+                .catch(function(err){
+                    console.log('Fail Delete RES',err);
+
+                } )
+            },
+        },
+    })
+</script>
+{% endblock %}
+
